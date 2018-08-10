@@ -1,33 +1,39 @@
 <template>
-  <transition name="confirm-fade">
-    <div class="confirm" v-show="showFlag" @click.stop>
-      <div class="confirm-wrapper">
-        <div class="confirm-content">
-          <h2>检查结果</h2>
-          <div class="content">
-            <p>错误({{errorList.length}}个)</p>
-            <ul>
-              <li v-for="(item, index) in errorList" :key="index">
-                <span>{{index+1}}、</span>
-                {{item}}
-              </li>
-            </ul>
-            <div class="operate">
-              <button @click="toNext" class="operate-btn left">返回修改</button>
+    <transition name="confirm-fade">
+        <div class="confirm" v-show="showFlag" @click.stop>
+            <div class="confirm-wrapper">
+                <div class="confirm-content">
+                    <h2>{{ confirmText }}</h2>
+                    <p>是否确认放弃？</p>
+                    <div class="operate">
+                        <button @click="toNext" class="operate-btn left">确认</button>
+                        <button @click="toBack" class="operate-btn">取消</button>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </transition>
+    </transition>
 </template>
 
 <script type="text/ecmascript-6">
+/**
+ *传递confirmText参数为弹出确认信息等，
+ *父组件直接通过$refs调用confirmShow()函数显示组件
+ *点击确认父组件返回一个select自定义事件
+ */
 export default {
     props: {
-        errorList: {
-            type: Array,
-            default: ["错误1", "错误2"]
+        confirmText: {
+            type: String,
+            default: "放弃后将不在保存进度！"
+        },
+        confirmBtnNext: {
+            type: String,
+            default: "确认"
+        },
+        confirmBtnBack: {
+            type: String,
+            default: "取消"
         }
     },
     data() {
@@ -66,29 +72,25 @@ export default {
     bottom: 0;
     z-index: 19980;
     color: #4d4d4d;
-    background-color: rgba(131, 130, 130, 0.24);
+    background-color: rgba(0, 0, 0, 0.24);
     .confirm-wrapper {
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 600px;
+        width: 300px;
+        height: 180px;
         border-radius: 5px;
         background: #f5f4f4;
-        border: 1px solid rgb(170, 169, 169);
+        border: 1px solid rgb(121, 119, 119);
         transform: translate(-50%, -50%);
+        padding: 30px;
         box-sizing: border-box;
-        h2 {
-            width: 100%;
-            height: 50px;
-            font-size: 16px;
-            font-weight: 500;
-            background: #499bf1;
-            text-indent: 20px;line-height: 50px;
-            color: #fff;
-        }
-        .content {
-            padding: 20px 30px;
-            overflow: auto;
+        .confirm-content {
+            h2 {
+                font-size: 16px;
+                font-weight: 500;
+                margin-bottom: 20px;
+            }
             p {
                 font-size: 14px;
                 margin-bottom: 30px;
@@ -98,13 +100,14 @@ export default {
                 margin-top: 5px;
             }
             .operate-btn {
-                width: 100px;
-                height: 30px;
+                width: 70px;
+                height: 25px;
                 border-radius: 5px;
                 outline: none;
-                background: #499bf1;
-                color: #fff;
                 cursor: pointer;
+            }
+            .left {
+                margin-right: 15px;
             }
         }
     }

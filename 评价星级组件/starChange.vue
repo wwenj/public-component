@@ -1,25 +1,27 @@
 <template>
-  <div>
-    <ul class="star-ul">
-      <li class="star-li" v-for="(item,index) in starList" :key="index" @click="starClick(index)">
-        <img v-if="starShow(index)" src="../../../../assets/img/star1.jpg" alt="评星">
-        <img v-else src="../../../../assets/img/star2.jpg" alt="评星">
-      </li>
-    </ul>
-  </div>
+    <div>
+        <ul class="star-ul">
+            <li class="star-li" v-for="(item,index) in starList" :key="index" @click="starClick(index)">
+                <img v-if="starShow(index)" src="../../../../assets/img/star1.jpg" alt="评星">
+                <img v-else src="../../../../assets/img/star2.jpg" alt="评星">
+            </li>
+        </ul>
+    </div>
 </template>
 
 <script type="text/ecmascript-6">
 export default {
+    /**
+     * 点击评星，返回父组件评星星级数
+     */
     props: {
-        alertText: {
-            type: String,
-            default: "获取上一题成功"
+        starList: {
+            type: Array,
+            default: [0, 1, 2, 3, 4]
         }
     },
     data() {
         return {
-            starList: [0, 1, 2, 3, 4],
             starIndex: -1
         }
     },

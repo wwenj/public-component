@@ -1,0 +1,3 @@
+- 传递confirmText参数为弹出确认信息等，
+- 父组件直接通过$refs调用confirmShow()函数显示组件
+- 点击确认父组件返回一个select自定义事件
