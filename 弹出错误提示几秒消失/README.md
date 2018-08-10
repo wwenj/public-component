@@ -1,0 +1,2 @@
+- 父组件直接通过$refs调用show()函数显示组件，显示后delay秒消失
+- 父组件用alertText传递弹出信息，用delay传递消失时间
