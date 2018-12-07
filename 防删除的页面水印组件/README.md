@@ -1,6 +1,6 @@
 ### web页面防删除水印组件
 
-![image-20181207143845449](/Users/didi/Library/Application Support/typora-user-images/image-20181207143845449.png)
+![image-20181207143845449](http://blog.wwenj.com/usr/uploads/2018/12/2830948734.png)
 
 ### 效果
 
